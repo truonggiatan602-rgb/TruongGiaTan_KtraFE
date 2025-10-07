@@ -1,0 +1,213 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang Địa Chỉ Giao Hàng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+    }
+
+    header {
+      background: #232f3e;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .delivery, .gift-options, .summary {
+      background: #fff;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .delivery h3 {
+      margin-top: 0;
+    }
+
+    .delivery button {
+      background: #007185;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .delivery button:hover {
+      background: #004f59;
+    }
+
+    .gift-options h3 {
+      margin-bottom: 15px;
+    }
+
+    .item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .item img {
+      margin-right: 15px;
+      border-radius: 8px;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+
+    .item .info {
+      flex: 1;
+    }
+
+    textarea {
+      width: 100%;
+      height: 60px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      padding: 6px;
+      resize: none;
+    }
+
+    button {
+      background: #ffd814;
+      border: 1px solid #fcd200;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #f7ca00;
+    }
+
+    .summary {
+      text-align: right;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #232f3e;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+
+    @@media (max-width: 600px) {
+      .item {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .item img {
+        margin-bottom: 10px;
+      }
+
+      .summary {
+        text-align: center;
+      }
+    }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2><i class="fas fa-lock"></i> Secure checkout</h2>
+        <i class="fas fa-shopping-cart"></i>
+    </header>
+
+    <section class="delivery">
+        <h3>Delivering to NGUYEN VAN A</h3>
+        <p>198 S Van Hanh St, HCM City, 700000, Vietnam</p>
+        <button id="btnChange"><i class="fas fa-edit"></i> Change</button>
+    </section>
+
+    <section class="gift-options">
+        <h3><i class="fas fa-gift"></i> Choose gift options</h3>
+
+        <div class="item">
+            <img src="https://m.media-amazon.com/images/I/71Y2QFFbpqL._UY1000_.jpg" alt="product">
+            <div class="info">
+                <p><strong>Newchic Dressy Casual Tops</strong></p>
+                <label><input type="checkbox" class="gift"> This item is a gift</label>
+                <textarea placeholder="Gift message"></textarea>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="https://media-tommy.6thstreet.com/media/catalog/product/cache/dea14d70f0c9beff074352c4088a089a/a/w/aw0aw17830_dw6_main.jpg" alt="product">
+            <div class="info">
+                <p><strong>Tommy Hilfiger Women’s Bag</strong></p>
+                <label><input type="checkbox" class="gift"> This item is a gift</label>
+                <textarea placeholder="Gift message"></textarea>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx2rtXorLT1xFOTGTa-djI6kHMA324bDHrFg&s" alt="product">
+            <div class="info">
+                <p><strong>Sam Edelman Women’s Pumps</strong></p>
+                <label><input type="checkbox" class="gift"> This item is a gift</label>
+                <textarea placeholder="Gift message"></textarea>
+            </div>
+        </div>
+
+        <button id="btnSave"><i class="fas fa-save"></i> Save gift options</button>
+    </section>
+
+    <aside class="summary">
+        Order total: <span>$511.83</span>
+    </aside>
+
+    <footer>
+        &copy; 2025 Amazon Clone | TruongGiaTan_KtraFE
+    </footer>
+
+    <script>
+    document.getElementById("btnChange").addEventListener("click", function () {
+      let newAddress = prompt("Nhập địa chỉ giao hàng mới:");
+      if (newAddress) {
+        document.querySelector(".delivery p").textContent = newAddress;
+      }
+    });
+
+    document.getElementById("btnSave").addEventListener("click", function () {
+      const gifts = document.querySelectorAll(".gift");
+      let selected = 0;
+
+      gifts.forEach(g => {
+        if (g.checked) selected++;
+      });
+        
+      if (selected === 0) {
+        alert("Bạn chưa chọn sản phẩm nào làm quà!");
+      } else {
+        alert(`Đã lưu lựa chọn cho ${selected} sản phẩm.`);
+      }
+    });
+    </script>
+</body>
+</html>
